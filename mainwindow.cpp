@@ -26,8 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
                         board.at(x).at(y) = Player::HUMAN;
                         if (checkWin(Player::HUMAN, board)) {
                             openMsgBox("U wiiiiin!");
+                            on_actionNew_Game_triggered();
                         } else if (isGameOver(board)) {
                             openMsgBox("Tieeeeee!");
+                            on_actionNew_Game_triggered();
                         } else {
                             isHumanTurn = false;
                             playTheBest();
@@ -67,10 +69,12 @@ void MainWindow::playTheBest()
     btns.at(bestRow).at(bestColumn)->setText((QString)Player::AI);
     btns.at(bestRow).at(bestColumn)->setChecked(true);
 
-    if (checkWin(Player::AI, board))
+    if (checkWin(Player::AI, board)){
         openMsgBox("U loseeee!");
-    else
+        on_actionNew_Game_triggered();
+    } else {
         isHumanTurn = true;
+    }
 }
 
 int MainWindow::miniMax(std::vector<std::vector<char>> gameBoard,
