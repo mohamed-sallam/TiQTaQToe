@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
                         board.at(x).at(y) = Player::HUMAN;
                         if (checkWin(Player::HUMAN, board)) {
                             openMsgBox("U wiiiiin!");
+                        } else if (isGameOver(board)) {
+                            openMsgBox("Tieeeeee!");
                         } else {
                             isHumanTurn = false;
                             playTheBest();
